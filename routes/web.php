@@ -7,6 +7,8 @@ use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
 use App\Models\Penjualan;
 use Illuminate\Support\Facades\Route;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 /*
@@ -49,4 +51,9 @@ Route::get('/tambah-penjualan', [penjualanController::class, 'tambahPenjualan'])
 Route::post('/tambah-penjualan', [penjualanController::class, 'simpanPenjualan'])->name('simpan-penjualan');
 Route::get('sale/detail/{id}', [PenjualanController::class, 'detailSale'])->name('sale.detail');
 // Route::get('/staff/view/pdf', [PenjualanController::class, 'view_pdf']);
+// Route::get('/sales/export/excel', [AdminController::class, 'exportToExcel'])->name('sales.export.excel');
+Route::get('/sales/export/pdf/{id}', [PenjualanController::class, 'exportPDF'])->name('pdf');
+Route::get('/sales/export/excel', [AdminController::class, 'exportToExcel'])->name('sales.export.excel');
+
+
 

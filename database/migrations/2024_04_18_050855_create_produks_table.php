@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama');
             $table->decimal('price', 10, 2);
             $table->integer('stock');
+            $table->string('deskripsi');
             $table->timestamps();
         });
     }

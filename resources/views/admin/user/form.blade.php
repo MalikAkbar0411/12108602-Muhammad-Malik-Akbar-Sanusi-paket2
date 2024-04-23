@@ -4,14 +4,7 @@
 
 @section('content')
 
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
+
 @endif
 <form action="{{ isset($user) ? route('update', $user->id) : route('tambah-user') }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -57,4 +50,5 @@
         </div>
     </div>
 </form>
+
 @endsection

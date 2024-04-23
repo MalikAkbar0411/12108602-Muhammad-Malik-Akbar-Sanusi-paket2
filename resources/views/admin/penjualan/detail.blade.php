@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sale_details as $index => $sale_detail)
+                    @foreach ($sales as $index => $sale_detail)
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $sale_detail->product->nama }}</td> <!-- Menampilkan nama produk -->
@@ -32,7 +32,29 @@
         </div>
     </div>
     <div class="card-footer">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="total">Total Harga</label>
+                <input type="text" class="form-control" id="total" value="{{ number_format($totalPrice, 0, ',', '.') }}" readonly>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label for="bayar">Uang Bayar</label>
+                <input type="text" class="form-control" id="bayar" value="{{ number_format($bayar, 0, ',', '.') }}" readonly>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label for="kembalian">Kembalian</label>
+                <input type="text" class="form-control" id="kembalian" value="{{ number_format($kembalian, 0, ',', '.') }}" readonly>
+            </div>
+        </div>
+    <div class="card-footer">
+        <a href="{{ route('pdf', $sale_detail->id)}}" class="btn btn-primary"><i class="fas fa-save"></i> Export to PDF</a>
         <a href="{{ route('penjualan') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
     </div>
+</div>
+
 </div>
 @endsection

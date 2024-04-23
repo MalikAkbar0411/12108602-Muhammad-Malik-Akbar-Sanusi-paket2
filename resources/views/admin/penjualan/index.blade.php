@@ -13,6 +13,7 @@
                     <div class="card-body">
                         <a href="{{ route('tambah-penjualan') }}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i>
                             Tambah</a></a>
+                            <a href="{{ route('sales.export.excel') }}" class="btn btn-warning mb-3"><i class="fas fa-save"></i> Export to EXCEL</a>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -28,15 +29,15 @@
                                     @foreach ($penjualans as $sale_detail)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $sale_detail->customer->nama }}</td>
-                                            <td>{{ $sale_detail->price }}</td>
+                                            <td>{{ $sale_detail->customer ? $sale_detail->customer->nama : 'Pelanggan Tidak Tersedia' }}
+                                            </td>
+                                            <td>{{ $sale_detail->bayar }}</td>
                                             <td>{{ $sale_detail->date }}</td>
                                             <td>
                                                 <button type="button"
                                                     onclick="window.location='{{ route('sale.detail', $sale_detail->id) }}'"
                                                     class="btn btn-info"><i class="fas fa-info-circle"></i> Detail</button>
-                                                    <a href="{{route('cetak')}}" target="blank"  class="btn btn-danger">o</a>
-                                                </td>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

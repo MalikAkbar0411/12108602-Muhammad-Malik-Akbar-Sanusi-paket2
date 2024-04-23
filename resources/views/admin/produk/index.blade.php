@@ -3,7 +3,11 @@
 @section('title', 'Data produk')
 
 @section('content')
-
+@if(session()->has('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -12,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <a href="{{ route('tambah-produk') }}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Tambah
-                            Pengguna</a>
+                            Produk</a>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -21,6 +25,7 @@
                                         <th>Nama Produk</th>
                                         <th>Harga</th>
                                         <th>Stok</th>
+                                        <th>deskripsi</th>
                                         <th>foto</th>
                                         <th>Action</th>
                                     </tr>
@@ -32,6 +37,7 @@
                                             <td>{{ $item->nama }}</td>
                                             <td>{{ $item->price }}</td>
                                             <td>{{ $item->stock }}</td>
+                                            <td>{{ $item->deskripsi}}</td>
                                             <td><img src="{{ asset($item->image) }}" width="60px" alt=""></td>
                                             <td>
                                                 <a href="{{ route('edit-produk', ['id' => $item->id]) }}"

@@ -8,7 +8,7 @@
               Dashboard
             </p>
           </a>
-          @if(Auth::check() && Auth::user()->role == 'admin')
+          @if(Auth::check()  &&Auth::user()->role == 'admin')
           <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
               <a class="nav-link" href="/dashboard" style="{{ Request::is('dashboard') ? 'color: #ffff00;' : '' }}">
                   <i class="fas fa-fw fa-home" style="{{ Request::is('dashboard') ? 'color: #ffff00;' : 'color: #ffffff;' }}"></i>

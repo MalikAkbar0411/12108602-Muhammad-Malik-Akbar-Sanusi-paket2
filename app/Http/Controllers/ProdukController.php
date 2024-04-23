@@ -25,7 +25,8 @@ class ProdukController extends Controller
             'nama' => 'required',
             'price' => 'required',
             'stock' => 'required',
-            'image' => 'required|mimes:jpeg,png,jpg,gif|max:2048'
+            'deskripsi' => 'required',
+            'image' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
 
         ]);
 
@@ -37,7 +38,7 @@ class ProdukController extends Controller
         }
 
         Produk::create($input);
-        return redirect()->route('produk');
+        return redirect()->route('produk')->with('success', 'Produk berhasil diperbarui!');
 
     }
 
@@ -58,25 +59,34 @@ class ProdukController extends Controller
             $request->validate([
                 'nama' => 'required',
                 'price' => 'required',
-                'stock' => 'required'
+                'stock' => 'required',
+                'deskripsi' => 'required'
             ]);
 
             // Perbarui atribut produk dengan nilai baru dari formulir
             $produk->nama = $request->nama;
             $produk->price = $request->price;
             $produk->stock = $request->stock;
+            $produk->deskripsi = $request->deskripsi;
 
             // Simpan perubahan ke dalam database
             $produk->save();
 
             // Redirect pengguna kembali ke halaman produk dengan pesan sukses
-            return redirect()->route('produk')->with('success', 'Data produk berhasil diperbarui.');
+
+            // Redirect ke halaman produk atau halaman lain yang sesuai
+            return redirect()->route('produk')->with('success', 'Produk berhasil diperbarui!');
+
         }
     }
 
     public function hapusProduk($id)
     {
-        Produk::find($id)->delete();
+        $produk = Produk::find($id);
+        if ($produk) {
+            $produk->delete();
+        }
         return redirect()->route('produk');
     }
+    
 }
